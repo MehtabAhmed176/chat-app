@@ -10,7 +10,8 @@ const io = socketio(server)
 
 const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
-const messageGenerate=require('./utils/messages')
+const {messageGenerate,generateLocationMessage}=require('./utils/messages')
+
 
 app.use(express.static(publicDirectoryPath))
 
@@ -32,7 +33,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('sendLocation', (coords, callback) => {
-        io.emit('locationMessage', `https://google.com/maps?q=${coords.latitude},${coords.longitude}`)
+        io.emit('locationMessage',generateLocationMessage( `https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
         callback()
     })
 

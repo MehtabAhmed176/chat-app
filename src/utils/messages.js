@@ -6,4 +6,13 @@ return {
 }
 
 }
-module.exports=messageGenerate
+
+const generateLocationMessage=(url)=>{
+
+    return {
+        url,
+        createdAt:new Date().getTime()
+    }
+    
+    }
+module.exports={messageGenerate,generateLocationMessage}
